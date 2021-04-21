@@ -1,14 +1,29 @@
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 import "./TodoList.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import CompletedTodoListItem from "./CompletedTodoListItem";
 
 const TodoList = () => {
-  const [todoList, setTodosList] = useState([]);
-  const [completedTodoList, setCompletedTodoList] = useState([]);
+  const [todoList, setTodosList] = useState(
+    JSON.parse(localStorage.getItem("todoList")) || []
+  );
+  const [completedTodoList, setCompletedTodoList] = useState(
+    JSON.parse(localStorage.getItem("completedTodoList")) || []
+  );
 
   const idCounterRef = useRef(0);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "completedTodoList",
+      JSON.stringify(completedTodoList)
+    );
+  }, [completedTodoList]);
 
   const addTodo = (todo) => {
     const newTodoList = todoList.concat({
@@ -50,7 +65,6 @@ const TodoList = () => {
           completeTodo={completeTodo}
         />
       ))}
-      <hr />
       {completedTodoList.map((todo) => (
         <CompletedTodoListItem
           key={todo.id}

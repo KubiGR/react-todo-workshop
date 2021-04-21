@@ -1,4 +1,4 @@
-.todo-item-container {
+.completed-todo-item-container {
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.todo-item-container:after {
+.completed-todo-item-container:after {
   content: "";
   position: absolute;
   margin: -60px;
@@ -24,16 +24,14 @@
   width: 35%;
 }
 
-.flag-check {
-  width: 3rem;
-  height: 3rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .check-icon {
-  color: #516e4d;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  color: #faebd7;
+  filter: invert(87%) sepia(6%) saturate(1474%) hue-rotate(328deg)
+    brightness(112%) contrast(96%);
   width: 1rem;
   height: 1rem;
 }
