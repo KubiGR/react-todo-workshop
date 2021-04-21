@@ -1,17 +1,25 @@
 import "./CompletedTodoListItem.css";
 import svgCheck from "./../assets/check-mark.svg";
+import svgDelete from "./../assets/delete.svg";
 
 const CompletedTodoListItem = ({ todo, removeCompletedTodo }) => (
   <div className="completed-todo-item-container">
-    <h3 className="todo-text">{todo.text}</h3>
+    <h2 className="todo-text">{todo.text}</h2>
+    <img
+      src={svgCheck}
+      alt="completed-todo-check"
+      className="completed-todo-check-icon"
+    />
     <div className="todo-buttons-container">
-      <img src={svgCheck} alt="completed-todo-check" className="check-icon" />
-
       <button
         onClick={() => removeCompletedTodo(todo.id)}
-        className="remove-button"
+        className="completed-todo-remove-button"
       >
-        Remove
+        <img
+          src={svgDelete}
+          alt="completed-todo-check"
+          className="check-icon"
+        />
       </button>
     </div>
   </div>

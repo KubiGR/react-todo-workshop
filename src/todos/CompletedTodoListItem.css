@@ -24,12 +24,11 @@
   width: 35%;
 }
 
-.check-icon {
+.completed-todo-check-icon {
   position: absolute;
   top: 8px;
   left: 8px;
   z-index: 1;
-  color: #faebd7;
   filter: invert(87%) sepia(6%) saturate(1474%) hue-rotate(328deg)
     brightness(112%) contrast(96%);
   width: 1rem;
@@ -40,17 +39,8 @@
   width: 100%;
 }
 
-button {
-  width: 100%;
-  font-size: 16px;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-  cursor: pointer;
-}
-
-.remove-button {
+.completed-todo-remove-button {
+  margin-left: auto;
   color: antiquewhite;
   background-color: #793421;
 }

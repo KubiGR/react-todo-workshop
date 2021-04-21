@@ -4,6 +4,11 @@ import "./NewTodoForm.css";
 const NewTodoForm = ({ addTodo }) => {
   const [inputValue, setInputValue] = useState("");
 
+  const createTodo = () => {
+    addTodo({ text: inputValue });
+    setInputValue("");
+  };
+
   return (
     <div className="new-todo-form">
       <input
@@ -13,10 +18,7 @@ const NewTodoForm = ({ addTodo }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button
-        className="new-todo-button"
-        onClick={() => addTodo({ text: inputValue })}
-      >
+      <button className="new-todo-button" onClick={() => createTodo()}>
         Create Todo
       </button>
     </div>
