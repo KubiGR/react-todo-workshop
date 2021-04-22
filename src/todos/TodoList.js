@@ -12,9 +12,6 @@ const TodoList = () => {
     JSON.parse(localStorage.getItem("completedTodoList")) || []
   );
 
-  console.log(todoList);
-  console.log(completedTodoList);
-
   const idCounterRef = useRef(
     JSON.parse(localStorage.getItem("idCounter")) || 0
   );

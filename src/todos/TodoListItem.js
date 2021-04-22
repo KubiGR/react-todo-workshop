@@ -2,35 +2,41 @@ import "./TodoListItem.css";
 import svgCheck from "./../assets/check-mark.svg";
 import svgDelete from "./../assets/delete.svg";
 import svgEdit from "./../assets/edit.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
   const [editMode, setEditMode] = useState(false);
   const [editInput, setEditInput] = useState(todo.text);
+  const inputRef = useRef(null);
 
   const editTodoClick = (todo) => {
     setEditMode(true);
   };
 
   useEffect(() => {
+    if (editMode) inputRef.current.focus();
+  }, [editMode]);
+
+  useEffect(() => {
+    const handleKeydown = (evt) => {
+      if (editMode && evt.key === "Enter") {
+        setEditMode(false);
+        editTodo(todo, editInput);
+      }
+    };
+
     window.addEventListener("keydown", handleKeydown);
 
     return () => {
       window.removeEventListener("keydown", handleKeydown);
     };
-  });
-
-  const handleKeydown = (evt) => {
-    if (editMode && evt.key === "Enter") {
-      setEditMode(false);
-      editTodo(todo, editInput);
-    }
-  };
+  }, [editInput, editMode, editTodo, todo]);
 
   return (
     <div className="todo-item-container">
       {editMode ? (
         <input
+          ref={inputRef}
           className="edit-todo-input"
           type="text"
           placeholder={todo.text}
