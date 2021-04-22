@@ -12,7 +12,12 @@ const TodoList = () => {
     JSON.parse(localStorage.getItem("completedTodoList")) || []
   );
 
-  const idCounterRef = useRef(0);
+  console.log(todoList);
+  console.log(completedTodoList);
+
+  const idCounterRef = useRef(
+    JSON.parse(localStorage.getItem("idCounter")) || 0
+  );
 
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
@@ -25,6 +30,10 @@ const TodoList = () => {
     );
   }, [completedTodoList]);
 
+  useEffect(() => {
+    localStorage.setItem("idCounter", idCounterRef.current);
+  }, [todoList]);
+
   const addTodo = (todo) => {
     const newTodoList = todoList.concat({
       ...todo,
@@ -35,21 +44,30 @@ const TodoList = () => {
     idCounterRef.current++;
   };
 
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((e) => id !== e.id).slice();
+  const removeTodo = (todo) => {
+    const newTodoList = todoList.filter((e) => todo.id !== e.id).slice();
     setTodosList(newTodoList);
+  };
+
+  const editTodo = (todo, newText) => {
+    const todoToEdit = todoList.find((e) => todo.id === e.id);
+    todoToEdit.text = newText;
+    setTodosList(todoList.slice());
   };
 
   const completeTodo = (todo) => {
     const newTodoList = todoList.filter((e) => todo.id !== e.id).slice();
     setTodosList(newTodoList);
-    const newCompletedTodoList = completedTodoList.concat(todo);
+    const newCompletedTodoList = completedTodoList.concat({
+      ...todo,
+      completed: true,
+    });
     setCompletedTodoList(newCompletedTodoList);
   };
 
-  const removeCompletedTodo = (id) => {
+  const removeCompletedTodo = (todo) => {
     const newCompletedTodoList = completedTodoList
-      .filter((e) => id !== e.id)
+      .filter((e) => todo.id !== e.id)
       .slice();
     setCompletedTodoList(newCompletedTodoList);
   };
@@ -63,6 +81,7 @@ const TodoList = () => {
           todo={todo}
           removeTodo={removeTodo}
           completeTodo={completeTodo}
+          editTodo={editTodo}
         />
       ))}
       {completedTodoList.map((todo) => (

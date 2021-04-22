@@ -12,14 +12,10 @@ const CompletedTodoListItem = ({ todo, removeCompletedTodo }) => (
     />
     <div className="todo-buttons-container">
       <button
-        onClick={() => removeCompletedTodo(todo.id)}
+        onClick={() => removeCompletedTodo(todo)}
         className="completed-todo-remove-button"
       >
-        <img
-          src={svgDelete}
-          alt="completed-todo-check"
-          className="check-icon"
-        />
+        <img src={svgDelete} alt="completed-todo-check" className="icon" />
       </button>
     </div>
   </div>
