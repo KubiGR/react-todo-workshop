@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-end;
   border-radius: 8px;
-  margin-top: 1rem;
+  margin: 0.5rem 0;
   padding: 16px;
   position: relative;
   box-shadow: 0 4px 8px 1px #15091b;

@@ -72,22 +72,24 @@ const TodoList = () => {
   return (
     <div className="list-wrapper">
       <NewTodoForm addTodo={addTodo} />
-      {todoList.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          removeTodo={removeTodo}
-          completeTodo={completeTodo}
-          editTodo={editTodo}
-        />
-      ))}
-      {completedTodoList.map((todo) => (
-        <CompletedTodoListItem
-          key={todo.id}
-          todo={todo}
-          removeCompletedTodo={removeCompletedTodo}
-        />
-      ))}
+      <div className="list-scrollable">
+        {todoList.map((todo) => (
+          <TodoListItem
+            key={todo.id}
+            todo={todo}
+            removeTodo={removeTodo}
+            completeTodo={completeTodo}
+            editTodo={editTodo}
+          />
+        ))}
+        {completedTodoList.map((todo) => (
+          <CompletedTodoListItem
+            key={todo.id}
+            todo={todo}
+            removeCompletedTodo={removeCompletedTodo}
+          />
+        ))}
+      </div>
     </div>
   );
 };

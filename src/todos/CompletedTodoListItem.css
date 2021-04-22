@@ -1,16 +1,25 @@
-.completed-todo-item-container {
+.inner-completed-todo-item-container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
-  margin-top: 1rem;
   padding: 16px;
   position: relative;
-  box-shadow: 0 4px 8px 1px #15091b;
   color: antiquewhite;
   overflow: hidden;
 }
 
-.completed-todo-item-container:after {
+.completed-todo-item-container {
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  position: relative;
+  box-shadow: 0 4px 8px 1px #15091b;
+  color: antiquewhite;
+}
+
+.inner-completed-todo-item-container:after {
   content: "";
   position: absolute;
   margin: -60px;
