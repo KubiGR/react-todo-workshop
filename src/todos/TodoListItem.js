@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
   const [editMode, setEditMode] = useState(false);
-  const [editInput, setEditInput] = useState("");
+  const [editInput, setEditInput] = useState(todo.text);
 
   const editTodoClick = (todo) => {
     setEditMode(true);
@@ -21,7 +21,6 @@ const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
   });
 
   const handleKeydown = (evt) => {
-    console.log(evt);
     if (editMode && evt.key === "Enter") {
       setEditMode(false);
       editTodo(todo, editInput);
