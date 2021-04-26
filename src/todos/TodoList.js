@@ -18,6 +18,8 @@ const TodoList = () => {
 
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
+    localStorage.setItem("idCounter", idCounterRef.current);
+    document.title = `Todos: ${todoList.length}`;
   }, [todoList]);
 
   useEffect(() => {
@@ -26,10 +28,6 @@ const TodoList = () => {
       JSON.stringify(completedTodoList)
     );
   }, [completedTodoList]);
-
-  useEffect(() => {
-    localStorage.setItem("idCounter", idCounterRef.current);
-  }, [todoList]);
 
   const addTodo = (todo) => {
     const newTodoList = todoList.concat({
