@@ -1,12 +1,11 @@
 import { Component } from "react";
 import "./App.css";
-import TodoList from "./todos/TodoList";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <TodoList />
+        <h1 style={{ color: "white" }}>Let's learn React!</h1>;
       </div>
     );
   }
