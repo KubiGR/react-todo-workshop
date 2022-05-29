@@ -1,4 +1,3 @@
-import "./CompletedTodoListItem.css";
 import svgCheck from "./../assets/check-mark.svg";
 import svgDelete from "./../assets/delete.svg";
 
@@ -14,7 +13,7 @@ const CompletedTodoListItem = ({ todo, removeCompletedTodo }) => (
       <div className="todo-buttons-container">
         <button
           onClick={() => removeCompletedTodo(todo)}
-          className="completed-todo-remove-button"
+          className="button remove-button"
         >
           <img src={svgDelete} alt="completed-todo-check" className="icon" />
         </button>

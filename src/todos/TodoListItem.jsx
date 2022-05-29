@@ -1,4 +1,3 @@
-import "./TodoListItem.css";
 import svgCheck from "./../assets/check-mark.svg";
 import svgDelete from "./../assets/delete.svg";
 import svgEdit from "./../assets/edit.svg";
@@ -7,14 +6,10 @@ import { useState, useEffect, useRef } from "react";
 const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
   const [editMode, setEditMode] = useState(false);
   const [editInput, setEditInput] = useState(todo.text);
-  const inputRef = useRef(null);
-
-  const editTodoClick = (todo) => {
-    setEditMode(true);
-  };
+  const inputElementRef = useRef(null);
 
   useEffect(() => {
-    if (editMode) inputRef.current.focus();
+    if (editMode) inputElementRef.current.focus();
   }, [editMode]);
 
   useEffect(() => {
@@ -36,7 +31,7 @@ const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
     <div className="todo-item-container">
       {editMode ? (
         <input
-          ref={inputRef}
+          ref={inputElementRef}
           className="edit-todo-input"
           type="text"
           placeholder={todo.text}
@@ -47,13 +42,22 @@ const TodoListItem = ({ todo, removeTodo, completeTodo, editTodo }) => {
         <h2 className="todo-text">{todo.text}</h2>
       )}
       <div className="todo-buttons-container">
-        <button onClick={() => completeTodo(todo)} className="completed-button">
+        <button
+          onClick={() => completeTodo(todo)}
+          className="button complete-button"
+        >
           <img src={svgCheck} alt="Complete todo" className="icon" />
         </button>
-        <button onClick={() => editTodoClick(todo)} className="edit-button">
+        <button
+          onClick={() => setEditMode(true)}
+          className="button edit-button"
+        >
           <img src={svgEdit} alt="Edit todo" className="icon" />
         </button>
-        <button onClick={() => removeTodo(todo)} className="remove-button">
+        <button
+          onClick={() => removeTodo(todo)}
+          className="button remove-button"
+        >
           <img src={svgDelete} alt="Remove todo" className="icon" />
         </button>
       </div>
